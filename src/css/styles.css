@@ -1,0 +1,230 @@
+/* content setups */
+	/* centers stuff on the page */
+	.content.v2{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+
+/* profile header */
+	.profile_top{
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: center;
+		padding: 12px 20px;
+		margin: 0;
+		border-radius: 0 0 var(--roundness) var(--roundness);
+		box-shadow: var(--themeshadow);
+		background-color: var(--containerbg);
+	}
+	.profile_top .pic{
+		height: 45px;
+		aspect-ratio: 1;
+		border-radius: 50%;
+	}
+	.profile_top .nem{
+		font-size: 16px;
+	}
+	.profile_top .nem b{
+		font-size: 27px;
+		color: var(--themecolor);
+	}
+
+/* navbar */
+	nav{
+		display: flex !important;
+		justify-content: center;
+		margin: 20px 0;
+		width: 100%;
+	}
+	nav a{
+		display: inline-block;
+		text-align: center;
+	}
+	nav a:hover{
+		scale: 1.1;
+		background-color: var(--textcolor);
+		color: var(--alttextcolor);
+	}
+
+/* forms */
+	.formguy{
+		max-width: 500px;
+		width: 96%;
+	}
+
+	.formguy.f1{
+		border: 1px solid var(--containerbg);
+		padding: 12px;
+		border-radius: var(--roundness);
+	}
+	.formguy .input-group{
+		margin: 20px 0;
+	}
+	.formguy label{
+		display: block;
+		margin-bottom: 12px;
+	}
+	.formguy input:not([type="radio"],[type="color"]), .formguy textarea {
+		width: 100%;
+		padding: 10px 20px;
+		border-radius: var(--roundness);
+		border: none;
+		background-color: var(--containerbg);
+		color: var(--textcolor);
+	}
+	.formguy input:focus,.formguy textarea:focus{
+		scale: 1.02;
+		outline: none;
+		box-shadow: 0 0 12px var(--themecolor);
+	}
+	.formguy button:not(.themebtn){
+		width: 100%;
+		padding: 12px 20px;
+		border-radius: var(--roundness);
+		border: none;
+		background-color: var(--themecolor);
+		color: var(--textcolor);
+	}
+	.formguy button:hover{
+		scale: 1.02;
+		color: var(--containerbg);
+		background-color: var(--textcolor);
+	}
+
+/* for settings */
+	.settingsguy{
+		width: 96%;
+		max-width: 900px;
+	}
+	.settingsguy label{
+		display: block;
+		padding: 12px 0;
+	}
+	.settingsguy button.modebtn{
+		background-color: var(--textcolor);
+		color: var(--bodybg);
+	}
+	.section{
+		border: 1px solid var(--containerbg);
+		padding: 7px 12px;
+		margin: 12px 0;
+		border-radius: var(--roundness);
+	}
+	.section hr{
+		/* opacity: 0.5; */
+		color: var(--containerbg);
+	}
+
+	.daysguy{
+		display: flex;
+		flex-wrap: wrap;
+		--wdt: 150px;
+	}
+	.daysguy .daybox{
+		flex: 1 0 var(--wdt);
+		text-align: center;
+		margin: 12px 0;
+		padding: 12px 5px;
+		border-radius: var(--roundness);
+	}
+	.daysguy .daybox.current{
+		border: 2px solid var(--themecolor);
+	}
+	.daysguy .daybox b{
+		display: block;
+	}
+	.daysguy .daybox input{
+		width: var(--wdt);
+		background-color: var(--containerbg);
+		border-radius: var(--roundness);
+		border: none;
+		border-bottom: 2px solid var(--themecolor);
+		margin: 12px 0;
+		padding: 7px 12px;
+		color: var(--textcolor);
+		text-align: center;
+		display: inline-block;
+	}
+	.daysguy .daybox input:focus{
+		scale: 1.1;
+		box-shadow: 0 0 12px var(--themecolor);
+		outline: none;
+	}
+	.daysguy .daybox .thenum{
+		font-weight: 800;
+		font-size: 20px;
+		color: var(--themecolor);
+	}
+	.daysguy .daybox button{
+		width: var(--wdt);
+	}
+
+/* tables */
+	.tableguy{
+		border: 1px solid var(--containerbg);
+		padding: 12px;
+		border-radius: var(--roundness);
+		width: 96%;
+	}
+
+	.tableguy .items {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 20px;
+		align-items: center;
+	}
+	.tableguy .items .item{
+		width: 96%;
+		max-width: 900px;
+		border: 1px solid var(--containerbg);
+		border-radius: var(--roundness);
+		padding: 8px 12px;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.tableguy .items .item:hover{
+		scale: 1.02;
+		border: 1px solid var(--c);
+	}
+	.item .summ{
+		display: inline-block;
+	}
+	.item .summ .date{
+		font-size: 13px;
+	}
+	.item .icon{
+		margin: 8px 20px;
+		height: 35px;
+		aspect-ratio: 1;
+		translate: 0 -9px;
+		border-radius: 50%;
+		border: none;
+		background: var(--bodybg);
+		opacity: 0.5;
+	}
+
+	.item.in{
+		--c: var(--incolor);
+		--pre: '+';
+	}
+	.item.out{
+		--c: var(--outcolor);
+		--pre: '-';
+	}
+	.item .icon{
+		box-shadow: 0 0 12px var(--c) inset;
+		color: var(--c);
+	}
+	.item .thecash{
+		color: var(--c);
+	}
+	.item .thecash::before{
+		content: var(--pre);
+	}

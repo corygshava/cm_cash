@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/w3.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<title>GashMan - transactions</title>
+
+	<style>
+		.content{
+			padding: 10px 20px;
+		}
+	</style>
+</head>
+<body data-mode="dark">
+	<header class="profile_top">
+		<img src="images/profile.png" alt="your profile picture" class="pic">
+		<div class="nem">
+			<h1>Your transactions</h1>
+		</div>
+	</header>
+
+	<nav>
+		<a href="index.html" class="navlink"><i class="fa fa-dashboard"></i> summary</a>
+		<a href="trx.html" class="navlink active"><i class="fa fa-exchange"></i> transactions</a>
+		<a href="new_trx.html" class="navlink"><i class="fa fa-plus"></i> add</a>
+		<a href="settings.html" class="navlink"><i class="fa fa-cog"></i> settings</a>
+	</nav>
+
+    <div class="content v2">
+        <div class="tableguy">
+            <div class="items">
+                <div class="nada">
+                    <i>No saved transactions</i>
+                </div>
+                <div class="item in">
+                    <div class="w3-right thecash">
+                        <span class="currency">290</span>
+                    </div>
+                    <div class="desc">
+                        <button class="icon"><i class="fa fa-arrow-up"></i></button>
+                        <div class="summ">
+                            <span class="descTxt">how i got it</span><br>
+                            <span class="date halftone">12/02/2022</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item out">
+                    <div class="w3-right thecash">
+                        <span class="currency">350</span>
+                    </div>
+                    <div class="desc">
+                        <button class="icon"><i class="fa fa-arrow-down"></i></button>
+                        <div class="summ">
+                            <span class="descTxt">what i used it for</span><br>
+                            <span class="date halftone">12/02/2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<footer>
+		&copy; CoryG
+	</footer>
+
+	<script src="js/SuperScript.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/trx_ops.js"></script>
+
+    <script>
+        let tguy = document.querySelector('.tableguy>.items');
+
+        showtrx(tguy,"all","no transactions yet",true);
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/w3.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<title>GashMan - Settings</title>
+</head>
+<body data-mode="dark">
+	<header class="profile_top">
+		<img src="images/profile.png" alt="your profile picture" class="pic">
+		<div class="nem">
+			<h1>Settings</h1>
+		</div>
+	</header>
+	<nav>
+		<a href="index.html" class="navlink"><i class="fa fa-dashboard"></i> summary</a>
+		<a href="trx.html" class="navlink"><i class="fa fa-exchange"></i> transactions</a>
+		<a href="new_trx.html" class="navlink"><i class="fa fa-plus"></i> add</a>
+		<a href="settings.html" class="navlink active"><i class="fa fa-cog"></i> settings</a>
+	</nav>
+
+	<div class="content v2">
+		<div class="settingsguy f1">
+			<h2 class="w3-center">Change settings</h2>
+			<div class="items">
+				<div class="section">
+					<h3>Colors</h3>
+					<hr>
+					<div class="input-group">
+						<label for="thecolor">Theme color</label>
+						<input type="color" name="thecolor" id="thecolor" placeholder="$ 0.00">
+						<button class="themebtn" id="randcolor">random color</button>
+						<button class="themebtn" id="setcolor">set color</button>
+					</div>
+					<div class="input-group">
+						<label for="theamt">website mode</label>
+						<button class="themebtn modebtn" id="mdbtn">toggle mode</button>
+					</div>
+					<div class="input-group">
+						<label class="w3-text-red">Danger Zone</label>
+						<button class="themebtn modebtn" id="resetbtn">reset system</button>
+					</div>
+				</div>
+				<div class="section">
+					<h3>daily expenditure limit</h3>
+					<hr>
+					<div class="daysguy">
+						<div class="daybox">
+							<b>Sun</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Mon</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Tues</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Wed</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Thurs</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Fri</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Sat</b>
+							<input type="number" class="cash currency" value="0" placeholder="--">
+							<button class="themebtn"><i class="fa fa-pencil"></i> update</button>
+						</div>
+						<div class="daybox">
+							<b>Autoset</b>
+							<input type="number" class="cash currency" placeholder="weekly budget">
+							<button class="themebtn"><i class="fa fa-magic"></i> auto set</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		&copy; CoryG
+	</footer>
+
+	<script src="js/SuperScript.js"></script>
+	<script src="js/toappend.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/trx_ops.js"></script>
+
+    <script>
+        let modebtn = document.querySelector('#mdbtn');
+        let resetbtn = document.querySelector('#resetbtn');
+        let randcol = document.querySelector('#randcolor');
+        let setcol = document.querySelector('#setcolor');
+        let thecol = document.querySelector('#thecolor');
+
+		let daysguy = document.querySelector('.daysguy');
+		let days = document.querySelectorAll('.daybox');
+
+        modebtn.addEventListener('click',() => {toggleMode();});
+        randcol.addEventListener('click',() => {setThemecolor(getRandomColor());});
+        setcol.addEventListener('click',() => {setThemecolor(thecol.value);});
+
+		resetbtn.addEventListener('click',() => {
+			let con = confirm("this will delete all your data,\nare you sure");
+
+			if(con){
+				let pass = prompt('enter your password');
+
+				if(pass == sys_passwird){
+					deleteAllData();
+					return;
+				}
+			}
+
+			alert("disaster averted 😁")
+		});
+
+		function setupDays() {
+			days.forEach(el => {
+				let hed = el.querySelector('b');
+				let npt = el.querySelector('input');
+				let btn = el.querySelector('button');
+
+				btn.addEventListener('click',() => {
+					alert(hed.innerHTML);
+				})
+			});
+		}
+
+		setupDays();
+    </script>
+</body>
+</html>

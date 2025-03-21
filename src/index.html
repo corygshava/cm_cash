@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/w3.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<title>GashMan - home</title>
+
+	<style>
+		.content{
+			padding: 10px 20px;
+		}
+		.sums{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 20px;
+			margin: 20px 0;
+		}
+		.sums .sum{
+			flex: 1 0 250px;
+			border-radius: var(--roundness);
+			border: 1px solid var(--containerbg);
+			padding: 20px 7px;
+		}
+		.sum.bal{
+			color: var(--alttextcolor) !important;
+		}
+		.sum.bal.good{background-image: linear-gradient(-80deg,var(--themecolor),var(--incolor));}
+		.sum.bal.bad{background-image: linear-gradient(-80deg,var(--themecolor),var(--outcolor));}
+		.sum .bal .number{
+			font-weight: 900;
+		}
+		.sum span{
+			display: block;
+			padding: 3px 20px;
+		}
+		.sum .caption{
+			color: var(--textcolor);
+			letter-spacing: 2px;
+			opacity: 0.7;
+			text-transform: uppercase;
+		}
+		.sum .number{
+			font-size: 25px;
+			font-weight: 700;
+		}
+		.sum .desc{
+			font-size: 14px;
+		}
+
+		.thedatas{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+		.datapanel{
+			flex: 1 0 300px;
+			min-height: 300px;
+			border: 1px solid var(--containerbg);
+			padding: 20px;
+			border-radius: var(--roundness);
+		}
+
+		.options{
+			text-align: center;
+			border-top: 2px solid var(--containerbg);
+			padding: 20px 12px;
+		}
+	</style>
+</head>
+<body data-mode="dark">
+	<header class="profile_top">
+		<img src="images/profile.png" alt="your profile picture" class="pic">
+		<div class="nem">
+			<span>Good afternoon</span><br>
+			<b class="hed">John</b>
+		</div>
+	</header>
+
+	<nav>
+		<a href="index.html" class="navlink active"><i class="fa fa-dashboard"></i> summary</a>
+		<a href="trx.html" class="navlink"><i class="fa fa-exchange"></i> transactions</a>
+		<a href="new_trx.html" class="navlink"><i class="fa fa-plus"></i> add</a>
+		<a href="settings.html" class="navlink"><i class="fa fa-cog"></i> settings</a>
+	</nav>
+
+	<div class="content">
+		<div class="sums">
+			<div class="sum bal good">
+				<span class="caption">balance</span>
+				<span class="number currency" id="amt_balance">--</span>
+				<span class="desc">available cash</span>
+			</div>
+			<div class="sum">
+				<span class="caption">Today's budget</span>
+				<span class="number currency themetxt" id="amt_budget">--</span>
+				<span class="desc">you can spend</span>
+			</div>
+			<div class="sum">
+				<span class="caption">Today's expenses</span>
+				<span class="number currency out_txt" id="amt_expense">--</span>
+				<span class="desc">you have spent</span>
+			</div>
+			<div class="sum">
+				<span class="caption">Today's income</span>
+				<span class="number currency in_txt" id="amt_earn">--</span>
+				<span class="desc">you've earned</span>
+			</div>
+		</div>
+
+		<div class="thedatas">
+			<div class="datapanel udata">
+				<h2>Recent transactions</h2>
+				<div class="transtable">
+					<div class="nada">---</div>
+				</div>
+				<div class="options w3-center">
+					<a href="new_trx.html" class="themebtn"><i class="fa fa-plus"></i> add new</a>
+					<a href="trx.html" class="themebtn"><i class="fa fa-list"></i> list all</a>
+				</div>
+			</div>
+
+			<div class="datapanel ugraph">
+				<h2>Expenditure VS income graph</h2>
+
+				<div class="chart">
+					<div class="nada">
+						<i>coming soon</i>
+					</div>
+				</div>
+
+				<div class="options">
+					<button class="themebtn">reset data</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="dailydata">
+			<div class="section">
+				<h3>daily expenditure limits</h3>
+				<hr>
+				<div class="daysguy">
+					<div class="daybox">
+						<b>Sun</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Mon</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Tues</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Wed</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Thurs</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox current">
+						<b>Fri</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Sat</b>
+						<span class="thenum">200</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		&copy; CoryG
+	</footer>
+
+	<script src="js/SuperScript.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/trx_ops.js"></script>
+
+	<script>
+		let recentia = document.querySelector('.transtable');
+		let balance = document.querySelector('#amt_balance');
+		let day_budget = document.querySelector('#amt_budget');
+		let day_expense = document.querySelector('#amt_expense');
+		let day_earn = document.querySelector('#amt_earn');
+
+		let thadate = new Date();
+		// date format = 'm/d/y';
+		let datedata = reformatDate(thadate);
+
+		function mekUI() {
+			// top summary
+			showtrx(recentia,7,"no recent transactions",true);
+			balance.innerHTML = (getbalance()).toLocaleString();
+			day_expense.innerHTML = getexpense(datedata);
+			day_earn.innerHTML = getearnings(datedata);
+
+			// daily limits (remove later and replace with tha code)
+			showdailys();
+		}
+	</script>
+
+	<script>
+		// this block is for testing purposes delete it before pushing to production
+
+		getWeekLimits();
+
+		console.log(weeklimits);
+	</script>
+</body>
+</html>

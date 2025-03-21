@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/w3.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<title>GashMan - Add transaction</title>
+</head>
+<body data-mode="dark">
+	<header class="profile_top">
+		<img src="images/profile.png" alt="your profile picture" class="pic">
+		<div class="nem">
+			<h1>Add New transaction</h1>
+		</div>
+	</header>
+	<nav>
+		<a href="index.html" class="navlink"><i class="fa fa-dashboard"></i> summary</a>
+		<a href="trx.html" class="navlink"><i class="fa fa-exchange"></i> transactions</a>
+		<a href="new_trx.html" class="navlink active"><i class="fa fa-plus"></i> add</a>
+		<a href="settings.html" class="navlink"><i class="fa fa-cog"></i> settings</a>
+	</nav>
+
+	<div class="content v2">
+		<form class="formguy f1" action="#" id="theform">
+			<h2 class="w3-center">Add transaction</h2>
+			<div class="items">
+				<div class="radios">
+					<label for="t_type">Transaction type</label><br>
+					<input required type="radio" name="t_type" id="t_type" value="expense" checked>
+					<span>Expense</span>
+					<input required type="radio" name="t_type" id="t_type" value="income">
+					<span>Income</span>
+				</div>
+
+				<div class="input-group">
+					<label for="theamt">Amount</label>
+					<input required type="number" name="theamt" id="theamt" placeholder="$ 0.00">
+				</div>
+
+				<div class="input-group">
+					<label for="thedesc">Description (purpose)</label>
+					<input required type="text" name="thedesc" id="thedesc" placeholder="what was it for">
+				</div>
+
+				<div class="input-group">
+					<label for="thedate">Transaction date</label>
+					<input required type="date" name="thedate" id="thedate">
+				</div>
+
+				<div class="input-group">
+					<label for="thenote">Notes (optional)</label>
+					<textarea name="thenote" id="thenote" rows="5" placeholder="enter the notes here..."></textarea>
+				</div>
+
+				<button>Save transaction</button>
+			</div>
+		</form>
+	</div>
+
+	<footer>
+		&copy; CoryG
+	</footer>
+
+	<script src="js/SuperScript.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/trx_ops.js"></script>
+</body>
+</html>
