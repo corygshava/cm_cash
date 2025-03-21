@@ -30,24 +30,6 @@
 			<h2 class="w3-center">Change settings</h2>
 			<div class="items">
 				<div class="section">
-					<h3>Personalisation</h3>
-					<hr>
-					<div class="input-group">
-						<label for="thecolor">Theme color</label>
-						<input type="color" name="thecolor" id="thecolor" placeholder="$ 0.00">
-						<button class="themebtn" id="randcolor">random color</button>
-						<button class="themebtn" id="setcolor">set color</button>
-					</div>
-					<div class="input-group">
-						<label for="theamt">website mode</label>
-						<button class="themebtn modebtn" id="mdbtn">toggle mode</button>
-					</div>
-					<div class="input-group">
-						<label class="w3-text-red">Danger Zone</label>
-						<button class="themebtn modebtn" id="resetbtn">reset system</button>
-					</div>
-				</div>
-				<div class="section">
 					<h3>daily expenditure limit</h3>
 					<hr>
 					<div class="daysguy">
@@ -91,10 +73,38 @@
 							<input type="number" class="cash currency" id="weekbudget" placeholder="weekly budget">
 							<button class="themebtn" id="autoset" data-special="yes"><i class="fa fa-magic"></i> auto set</button>
 						</div>
-						<div class="daybox ignore" style="width: 100%;flex: 0 1 100vh;border-top: 1px solid;">
+						<div class="daybox ignore" style="width: 100%;flex: 0 1 100vh;border-top: 1px solid var(--themecolor);">
 							<b></b>
 							<button class="themebtn" id="updateall" data-special="yes"><i class="fa fa-magic"></i> update All</button>
 						</div>
+					</div>
+				</div>
+				<div class="section">
+					<h3>Personalisation</h3>
+					<hr>
+					<div class="input-group">
+						<label for="thecolor">Theme color</label>
+						<input type="color" name="thecolor" id="thecolor" placeholder="$ 0.00">
+						<button class="themebtn" id="randcolor">random color</button>
+						<button class="themebtn" id="setcolor">set color</button>
+					</div>
+					<div class="input-group">
+						<label for="theamt">website mode</label>
+						<button class="themebtn modebtn" id="mdbtn">toggle mode</button>
+					</div>
+					<div class="input-group">
+						<label class="w3-text-red">Danger Zone</label>
+						<button class="themebtn modebtn" id="resetbtn">reset system</button>
+					</div>
+				</div>
+
+				<div class="section">
+					<h3>Import / export</h3>
+					<hr>
+					<div class="options">
+						<button class="themebtn" id="exportbtn">export data</button>
+						<!-- <button class="themebtn" id="importbtn">import data</button> -->
+						<button class="themebtn w3-hide">upload to server</button>
 					</div>
 				</div>
 			</div>
@@ -115,6 +125,7 @@
         let resetbtn = document.querySelector('#resetbtn');
 		let autoset = document.querySelector('#autoset');
 		let updateall = document.querySelector('#updateall');
+        let exportbtn = document.querySelector('#exportbtn');
 
         let randcol = document.querySelector('#randcolor');
         let setcol = document.querySelector('#setcolor');
@@ -131,6 +142,8 @@
         modebtn.addEventListener('click',() => {toggleMode();});
         randcol.addEventListener('click',() => {setThemecolor(getRandomColor());});
         setcol.addEventListener('click',() => {setThemecolor(thecol.value);});
+
+		exportbtn.addEventListener('click',() => {exportData();})
 
 		resetbtn.addEventListener('click',() => {
 			let con = confirm("this will delete all your data,\nare you sure");
@@ -166,6 +179,7 @@
 						fill: "forwards"
 					};
 
+					btn.style.pointerEvents = "none";
 					btn.animate([...keyframes].reverse(),timing);
 
 					// so that it only sets up stuff once
@@ -178,7 +192,7 @@
 						if(btn.dataset.special != "yes"){
 							btn.addEventListener('click',() => {
 								let theval = Number(npt.value);
-								alert(theval);
+								alert(`limit for ${hed.innerHTML.split(" ")[0]} is now ${theval}`);
 
 								setLimit(n,theval)
 							});
@@ -186,6 +200,7 @@
 
 						npt.addEventListener('input',() => {
 							btn.animate(keyframes,timing);
+							btn.style.pointerEvents = "all";
 						})
 					}
 

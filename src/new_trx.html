@@ -69,5 +69,10 @@
 	<script src="js/SuperScript.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/trx_ops.js"></script>
+
+	<script>
+		// do some preprocessing on the values
+		document.forms[0].thedate.value = reformatDate(new Date());
+	</script>
 </body>
 </html>

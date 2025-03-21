@@ -234,6 +234,41 @@ function makedummies_limits(live) {
 	}
 }
 
+function exportData() {
+	/* get
+		thepref_transactions
+		thepref_color
+		thepref_mode
+		thepref_dailylimit
+	*/
+
+	let finalObj = {
+		transactions : JSON.parse(getpref(thepref_transactions,"[]")),
+		color : getpref(thepref_color,"dodgerblue"),
+		mode : getpref(thepref_mode,"dark"),
+		dailylimit : JSON.parse(getpref(thepref_dailylimit,"[]"))
+	};
+
+	let outdata = JSON.stringify(finalObj);
+	let thefile = new Blob([outdata],{type: 'application/json'});
+	let url = URL.createObjectURL(thefile);
+	let thelink = document.createElement('a');
+
+	thelink.classList.add('themebtn');
+	thelink.innerHTML = "get my data";
+	thelink.href = url;
+	thelink.download = `${appname}_[${reformatDate(today)}]_data.json`;
+
+	// document.body.appendChild(thelink);
+	
+	setTimeout(() => {
+		thelink.click();
+		// document.removeChild(thelink);
+	},300);
+
+	console.log(finalObj);
+}
+
 // events
 
 window.addEventListener('load',() => {

@@ -4,6 +4,7 @@ var thepref_mode = "cmcash_settings_mode";
 var thepref_dailylimit = "cmcash_settings_dailylimit";
 
 var sys_passwird = "shava4life";
+var appname = "GashMan";
 
 var today = new Date();
 

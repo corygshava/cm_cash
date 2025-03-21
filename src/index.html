@@ -216,7 +216,7 @@
 			let d_dayly = getdayly(thadate);
 
 			balance.innerHTML = d_balance.toLocaleString();
-			day_expense.innerHTML = d_expense.toLocaleString();
+			day_expense.innerHTML = `${d_expense.toLocaleString()} <b class="w3-text-grey smaller">/ ${d_dayly.toLocaleString()}</b>`;
 			day_earn.innerHTML = d_earnings.toLocaleString();
 			day_budget.innerHTML = `${d_dayly.toLocaleString()}`;
 

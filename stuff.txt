@@ -3,8 +3,10 @@
     the homepage wirks, mostly
     now all fields are required when adding transactions
     added a way to get all the weekly data summary
+    you can now export your financial data
+    work on daily expenditure limit functionality
 
 [todo]
-    work on daily expenditure limit functionality
+    work on importing financial data
 
 [odeas]

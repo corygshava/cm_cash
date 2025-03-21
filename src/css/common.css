@@ -120,3 +120,6 @@ footer{
 	.today::after{
 		content: ' (today)';
 	}
+	.smaller{
+		font-size: 0.7em;
+	}
