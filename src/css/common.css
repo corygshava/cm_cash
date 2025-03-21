@@ -90,6 +90,9 @@ footer{
 	.themetxt{
 		color: var(--themecolor);
 	}
+	.themebg{
+		background-color: var(--themecolor);
+	}
 
 	.currency::before{
 		content: var(--currency_prefix);
@@ -112,4 +115,8 @@ footer{
 
 	.halftone{
 		opacity: 0.7;
+	}
+
+	.today::after{
+		content: ' (today)';
 	}

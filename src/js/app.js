@@ -5,6 +5,8 @@ var thepref_dailylimit = "cmcash_settings_dailylimit";
 
 var sys_passwird = "shava4life";
 
+var today = new Date();
+
 function setupnav() {
 	// an array of links plus pages they link to plus captions
 	// get nav
@@ -28,6 +30,7 @@ function loadsettings() {
 	pickmode();
 	pickcolor();
 }
+
 function pickmode() {
 	// get mode from storage
 	// update the body to match

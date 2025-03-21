@@ -167,7 +167,7 @@
 						<b>Thurs</b>
 						<span class="thenum">200</span>
 					</div>
-					<div class="daybox current">
+					<div class="daybox">
 						<b>Fri</b>
 						<span class="thenum">200</span>
 					</div>
@@ -189,11 +189,18 @@
 	<script src="js/trx_ops.js"></script>
 
 	<script>
-		let recentia = document.querySelector('.transtable');
+		// your summary
 		let balance = document.querySelector('#amt_balance');
 		let day_budget = document.querySelector('#amt_budget');
 		let day_expense = document.querySelector('#amt_expense');
 		let day_earn = document.querySelector('#amt_earn');
+
+		// recent transactions
+		let recentia = document.querySelector('.transtable');
+
+		// dailys
+		let dailys_Holder = document.querySelector('.dailydata');
+		let dailys = dailys_Holder.querySelectorAll('.daybox');
 
 		let thadate = new Date();
 		// date format = 'm/d/y';
@@ -202,21 +209,44 @@
 		function mekUI() {
 			// top summary
 			showtrx(recentia,7,"no recent transactions",true);
-			balance.innerHTML = (getbalance()).toLocaleString();
-			day_expense.innerHTML = getexpense(datedata);
-			day_earn.innerHTML = getearnings(datedata);
 
-			// daily limits (remove later and replace with tha code)
-			showdailys();
+			let d_balance = getbalance();
+			let d_expense = getexpense(datedata);
+			let d_earnings = getearnings(datedata);
+			let d_dayly = getdayly(thadate);
+
+			balance.innerHTML = d_balance.toLocaleString();
+			day_expense.innerHTML = d_expense.toLocaleString();
+			day_earn.innerHTML = d_earnings.toLocaleString();
+			day_budget.innerHTML = `${d_dayly.toLocaleString()}`;
+
+			// daily limits (replace with tha showdailys code later)
+			
 		}
+
+		// this code section is for testing purposes only, move above once its approved
+
+		getWeekLimits();
+		showdailys();
+
+		function showdailys() {
+			dailys.forEach((el,id) => {
+				let numtxt = el.querySelector('.thenum');
+
+				el.dataset.myid = id;
+				numtxt.innerHTML = weeklimits[id];
+
+				if(id == thadate.getDay())
+					el.classList.add("current");
+			})
+		}
+
+		console.log(weeklimits);
 	</script>
 
 	<script>
-		// this block is for testing purposes delete it before pushing to production
-
-		getWeekLimits();
-
-		console.log(weeklimits);
+		// initialisers
+		mekUI(); // MUST RUN LAST!!!
 	</script>
 </body>
 </html>

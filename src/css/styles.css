@@ -98,7 +98,7 @@
 /* for settings */
 	.settingsguy{
 		width: 96%;
-		max-width: 900px;
+		max-width: 960px;
 	}
 	.settingsguy label{
 		display: block;
@@ -122,17 +122,18 @@
 	.daysguy{
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		--wdt: 150px;
 	}
 	.daysguy .daybox{
-		flex: 1 0 var(--wdt);
+		flex: 0 0 var(--wdt);
 		text-align: center;
 		margin: 12px 0;
 		padding: 12px 5px;
 		border-radius: var(--roundness);
 	}
 	.daysguy .daybox.current{
-		border: 2px solid var(--themecolor);
+		border: 1px solid var(--themecolor);
 	}
 	.daysguy .daybox b{
 		display: block;

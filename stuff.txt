@@ -1,0 +1,10 @@
+[done]
+    you can now add transactions
+    the homepage wirks, mostly
+    now all fields are required when adding transactions
+    added a way to get all the weekly data summary
+
+[todo]
+    work on daily expenditure limit functionality
+
+[odeas]

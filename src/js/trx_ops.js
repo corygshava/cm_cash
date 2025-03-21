@@ -157,6 +157,10 @@ function getearnings(date) {
 	return total;
 }
 
+function getdayly(date) {
+	return weeklimits[date.getDay()];
+}
+
 function getCashReport(date){
 	let taday = date == undefined ? new Date() : date;
 	let curday = taday.getDay();
@@ -213,19 +217,20 @@ function getWeekLimits() {
 	// parse it with JSON
 	let tempdata = JSON.parse(pld);
 
-	weeklimits = tempdata;
-
+	
 	// set it to weeklimits
 	if(pld == "[]"){
 		makedummies_limits();
+	} else {
+		weeklimits = tempdata;
 	}
 }
 
-function makedummies_limits() {
+function makedummies_limits(live) {
 	weeklimits = [];
 
 	for (let x = 0; x < 7; x++) {
-		weeklimits[x] = Math.floor(Math.random() * 200);
+		weeklimits[x] = live ? 0 : Math.floor(Math.random() * 200);
 	}
 }
 
