@@ -180,6 +180,80 @@
 			</div>
 		</div>
 
+		<div class="earndata">
+			<div class="section">
+				<h3>weekly earnings</h3>
+				<hr>
+				<div class="daysguy">
+					<div class="daybox">
+						<b>Sun</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Mon</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Tues</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Wed</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Thurs</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Fri</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Sat</b>
+						<span class="thenum">200</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="spenddata">
+			<div class="section">
+				<h3>weekly expenditure</h3>
+				<hr>
+				<div class="daysguy">
+					<div class="daybox">
+						<b>Sun</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Mon</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Tues</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Wed</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Thurs</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Fri</b>
+						<span class="thenum">200</span>
+					</div>
+					<div class="daybox">
+						<b>Sat</b>
+						<span class="thenum">200</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="weekdata">
 			<div class="section">
 				<h3>weekly data</h3>
@@ -211,11 +285,19 @@
 
 		// dailys
 		let dailys_Holder = document.querySelector('.dailydata');
+		let spends_Holder = document.querySelector('.spenddata');
+		let earn_Holder = document.querySelector('.earndata');
 		let dailys = dailys_Holder.querySelectorAll('.daybox');
 
 		let thadate = new Date();
 		// date format = 'm/d/y';
 		let datedata = reformatDate(thadate);
+
+		let weeklyReport = {};
+
+		function init() {
+			weeklyReport = getWeeklyCashReport();
+		}
 
 		function mekUI() {
 			// top summary
@@ -238,11 +320,6 @@
 		}
 
 		// this code section is for testing purposes only, move above once its approved
-
-		getWeekLimits();
-		showdailys();
-		showWeekData();
-
 		function showdailys() {
 			dailys.forEach((el,id) => {
 				let numtxt = el.querySelectorAll('.thenum');
@@ -258,7 +335,7 @@
 		function showWeekData() {
 			let holder = document.querySelector('.weekdata');
 			let datadis = holder.querySelector(".daysguy");
-			let dta = getWeeklyCashReport();
+			let dta = weeklyReport;
 			let weekdata = [getsum(dta.w_expenses),getsum(dta.w_income),dta.w_maxspend,dta.w_maxearn,dta.w_minspend,dta.w_minearn,getsum(weeklimits)];
 			let weekcaptions = ["week's <br>expenses","week's <br>income","max daily <br>expenditure","max daily<br> earnings","min daily <br>expenditure","min daily<br> earnings","week's <br>budget"]
 
@@ -267,9 +344,37 @@
 				datadis.innerHTML += `
 					<div class="daybox ${addclass}">
 						<b>${weekcaptions[id]}</b>
-						<span class="currency thenum">${weekdata[id].toLocaleString()}</span>
+						<span class="currency thenum w3-tag">${weekdata[id].toLocaleString()}</span>
 					</div>
 				`;
+			})
+		}
+
+		function showspendsData() {
+			let outs = spends_Holder.querySelectorAll('.daybox');
+
+			outs.forEach((el,id) => {
+				let thenum = el.querySelector('.thenum');
+				let num = weeklyReport.w_expenses[id];
+
+				if(num > weeklimits[id])
+					thenum.classList.add('out_txt');
+
+				thenum.innerHTML = `${(num).toLocaleString()}`;
+			})
+		}
+
+		function showearnData() {
+			let outs = earn_Holder.querySelectorAll('.daybox');
+
+			outs.forEach((el,id) => {
+				let thenum = el.querySelector('.thenum');
+				let num = weeklyReport.w_income[id];
+
+				if(num > 0)
+					thenum.classList.add('in_txt');
+
+				thenum.innerHTML = `${(num).toLocaleString()}`;
 			})
 		}
 
@@ -278,6 +383,14 @@
 
 	<script>
 		// initialisers
+		init();
+
+		getWeekLimits();
+		showdailys();
+		showspendsData();
+		showearnData();
+		showWeekData();
+
 		mekUI(); // MUST RUN LAST!!!
 	</script>
 </body>

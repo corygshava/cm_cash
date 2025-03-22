@@ -315,7 +315,7 @@ function isOnline() {
 
 function getmax(range) {
     // range must be an array of numbers
-    let max = range[0];
+    let max = range[0] == undefined ? 0 : range[0];
 
     range.forEach(el => {
         max = el >= max ? el : max;
@@ -326,7 +326,7 @@ function getmax(range) {
 
 function getmin(range) {
     // range must be an array of numbers
-    let min = range[0];
+    let min = range[0] == undefined ? 0 : range[0];
 
     range.forEach(el => {
         min = el <= min ? el : min;

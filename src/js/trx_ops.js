@@ -56,7 +56,7 @@ function showtrx(holder,amt,placeholder,reverse) {
 		holder.innerHTML += `
 			<div class="item ${ver.split("|")[0]}">
 				<div class="w3-right thecash">
-					<span class="currency">${el.t_amt}</span>
+					<span class="currency">${Number(el.t_amt).toLocaleString()}</span>
 				</div>
 				<div class="desc">
 					<button class="icon"><i class="fa fa-arrow-${ver.split("|")[1]}"></i></button>

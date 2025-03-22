@@ -175,6 +175,12 @@
 		width: var(--wdt);
 	}
 
+	.importer {
+	    background: var(--bodybg);
+	    padding: 20px 30px;
+	    border-radius: var(--roundness);
+	}
+
 /* tables */
 	.tableguy{
 		border: 1px solid var(--containerbg);

@@ -107,10 +107,23 @@
 					<hr>
 					<div class="options">
 						<button class="themebtn" id="exportbtn">export data</button>
-						<!-- <button class="themebtn" id="importbtn">import data</button> -->
+						<button class="themebtn" id="importbtn" onclick="toggleShowB('#importform','flex','none')">import data</button>
 						<button class="themebtn w3-hide">upload to server</button>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<div class="mymodal" id="importform" data-shown="0">
+			<div class="formguy w3-animate-zoom">
+				<form class="importer" id="the_importform">
+					<a class="w3-btn themebtn w3-right" onclick="toggleShow('#importform','flex','none')"><i class="fa fa-times"></i></a>
+					<h3>JSON importer</h3>
+					<div class="input-group">
+						<input type="file" name="thefile" accept="*.json">
+					</div>
+					<button>import data</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -278,6 +291,58 @@
 		}
 
 		setupDays();
+    </script>
+
+    <script>
+    	// for importing data
+    	daform = document.querySelector('#the_importform');
+
+    	daform.addEventListener('submit',(e) => {
+    		e.preventDefault();
+
+    		let file = daform.thefile.files[0];
+    		if(!file){alert('pick a file first');return;}
+
+    		let reader = new FileReader();
+
+    		reader.onload = () => {
+    			try{
+    				let thedta = JSON.parse(reader.result);
+    				console.log(thedta);
+
+    				if(thedta["transactions"] == undefined){
+    					throw new Error("invalid JSON file");
+    				} else {
+    					let mdata = JSON.parse(localStorage.getItem(thepref_transactions));
+    					let con = confirm("valid JSON found, do you want to import it?");
+
+    					console.log(mdata);
+
+    					if(con){
+    						con = confirm("Do you want to append or replace\n[OK will append]");
+
+    						if(con){
+    							mdata = [...mdata,...thedta.transactions];
+    						} else {
+    							mdata = thedta.transactions;
+    						}
+
+    						console.log(mdata);
+
+    						localStorage.setItem(thepref_transactions,JSON.stringify(mdata));
+    						window.location.reload();
+    					}
+    				}
+    			}
+    			catch(err){
+    				console.error(err);
+    			}
+    		};
+
+    		reader.readAsText(file);
+
+    		alert('working on it');
+    	});
     </script>
 </body>
 </html>
