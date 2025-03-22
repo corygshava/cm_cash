@@ -334,3 +334,13 @@ function getmin(range) {
 
     return min;
 }
+
+function getsum(range) {
+    let sum = 0;
+
+    range.forEach(el => {
+        sum += el;
+    })
+
+    return sum;
+}

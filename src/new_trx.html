@@ -73,6 +73,19 @@
 	<script>
 		// do some preprocessing on the values
 		document.forms[0].thedate.value = reformatDate(new Date());
+
+		var daform = document.querySelector('#theform');
+
+		window.addEventListener('load',() => {
+			if(daform != undefined){
+				daform.addEventListener('submit',(e) => {
+					e.preventDefault();
+
+					// alert("processing input");
+					new_trx();
+				});
+			}
+		})
 	</script>
 </body>
 </html>

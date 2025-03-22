@@ -5,6 +5,8 @@
     added a way to get all the weekly data summary
     you can now export your financial data
     work on daily expenditure limit functionality
+    you can now see the total projected budget for the week in settings
+    you can now see a roundup of financial activity for the week in the summary page
 
 [todo]
     work on importing financial data

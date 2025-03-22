@@ -73,6 +73,10 @@
 							<input type="number" class="cash currency" id="weekbudget" placeholder="weekly budget">
 							<button class="themebtn" id="autoset" data-special="yes"><i class="fa fa-magic"></i> auto set</button>
 						</div>
+						<div class="daybox ignore">
+							<b>Total</b>
+							<span class="thenum" id="totalamount">200</span>
+						</div>
 						<div class="daybox ignore" style="width: 100%;flex: 0 1 100vh;border-top: 1px solid var(--themecolor);">
 							<b></b>
 							<button class="themebtn" id="updateall" data-special="yes"><i class="fa fa-magic"></i> update All</button>
@@ -135,6 +139,7 @@
 		let days = document.querySelectorAll('.daybox');
 
 		let weekbudget = document.querySelector('#weekbudget');
+		let totalTxt = document.querySelector('#totalamount');
 
 		// switches
 		let allset = false;
@@ -244,12 +249,25 @@
 
 				allset = true;
 			}
+
+			let totalamt = getsum(weeklimits);
+			totalTxt.innerHTML = `${totalamt.toLocaleString()}`;
+			totalTxt.style.display = "inline-block";
+			totalTxt.animate([
+				{scale:0},
+				{scale:1}
+			],{
+				duration: 400,
+				easing: "ease-out",
+				fill: "forwards"
+			})
 		}
 
 		function setLimit(n,what) {
 			weeklimits[n] = what;
 
 			updateLimits(weeklimits);
+			window.location.reload();
 		}
 
 		function updateLimits(n) {

@@ -1,5 +1,4 @@
 // new trx compo
-var daform = document.querySelector('#theform');
 var showpage = "trx.html";
 let thedata = undefined;
 let weeklimits = [];
@@ -107,7 +106,7 @@ function new_trx() {
 
 	window.location.assign(showpage);
 
-	console.log(saveObj);
+	// console.log(saveObj);
 }
 
 function getbalance() {
@@ -161,7 +160,7 @@ function getdayly(date) {
 	return weeklimits[date.getDay()];
 }
 
-function getCashReport(date){
+function getWeeklyCashReport(date){
 	let taday = date == undefined ? new Date() : date;
 	let curday = taday.getDay();
 	let mill = 86400 * 1000;
@@ -208,6 +207,8 @@ function getCashReport(date){
 	}
 
 	console.log(outdata);
+
+	return outdata;
 }
 
 function getWeekLimits() {
@@ -268,16 +269,3 @@ function exportData() {
 
 	console.log(finalObj);
 }
-
-// events
-
-window.addEventListener('load',() => {
-	if(daform != undefined){
-		daform.addEventListener('submit',(e) => {
-			e.preventDefault();
-
-			alert("processing input");
-			new_trx();
-		});
-	}
-})

@@ -135,6 +135,17 @@
 	.daysguy .daybox.current{
 		border: 1px solid var(--themecolor);
 	}
+	.daysguy .daybox.special{
+		background-color: var(--themecolor);
+		margin: 0 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	.daysguy .daybox.special .thenum{
+		color: #fff !important;
+	}
 	.daysguy .daybox b{
 		display: block;
 	}

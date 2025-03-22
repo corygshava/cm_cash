@@ -118,6 +118,7 @@
 		<div class="thedatas">
 			<div class="datapanel udata">
 				<h2>Recent transactions</h2>
+				<hr>
 				<div class="transtable">
 					<div class="nada">---</div>
 				</div>
@@ -129,7 +130,7 @@
 
 			<div class="datapanel ugraph">
 				<h2>Expenditure VS income graph</h2>
-
+				<hr>
 				<div class="chart">
 					<div class="nada">
 						<i>coming soon</i>
@@ -178,6 +179,15 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="weekdata">
+			<div class="section">
+				<h3>weekly data</h3>
+				<hr>
+				<div class="daysguy">
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<footer>
@@ -185,6 +195,7 @@
 	</footer>
 
 	<script src="js/SuperScript.js"></script>
+	<script src="js/toappend.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/trx_ops.js"></script>
 
@@ -220,24 +231,45 @@
 			day_earn.innerHTML = d_earnings.toLocaleString();
 			day_budget.innerHTML = `${d_dayly.toLocaleString()}`;
 
+			let theclass = (d_expense > d_dayly) ? "out_txt" : "in_txt";
+			day_expense.className = `number currency ${theclass}`;
+
 			// daily limits (replace with tha showdailys code later)
-			
 		}
 
 		// this code section is for testing purposes only, move above once its approved
 
 		getWeekLimits();
 		showdailys();
+		showWeekData();
 
 		function showdailys() {
 			dailys.forEach((el,id) => {
-				let numtxt = el.querySelector('.thenum');
+				let numtxt = el.querySelectorAll('.thenum');
 
 				el.dataset.myid = id;
-				numtxt.innerHTML = weeklimits[id];
+				numtxt[0].innerHTML = weeklimits[id];
 
 				if(id == thadate.getDay())
 					el.classList.add("current");
+			});
+		}
+
+		function showWeekData() {
+			let holder = document.querySelector('.weekdata');
+			let datadis = holder.querySelector(".daysguy");
+			let dta = getWeeklyCashReport();
+			let weekdata = [getsum(dta.w_expenses),getsum(dta.w_income),dta.w_maxspend,dta.w_maxearn,dta.w_minspend,dta.w_minearn,getsum(weeklimits)];
+			let weekcaptions = ["week's <br>expenses","week's <br>income","max daily <br>expenditure","max daily<br> earnings","min daily <br>expenditure","min daily<br> earnings","week's <br>budget"]
+
+			weekdata.forEach((el,id) => {
+				let addclass = (weekcaptions[id].includes("budget")) ? "special" : "";
+				datadis.innerHTML += `
+					<div class="daybox ${addclass}">
+						<b>${weekcaptions[id]}</b>
+						<span class="currency thenum">${weekdata[id].toLocaleString()}</span>
+					</div>
+				`;
 			})
 		}
 
