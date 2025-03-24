@@ -258,7 +258,7 @@ function exportData() {
 	thelink.classList.add('themebtn');
 	thelink.innerHTML = "get my data";
 	thelink.href = url;
-	thelink.download = `${appname}_[${reformatDate(today)}]_data.json`;
+	thelink.download = `${appname}_[${reformatDate(today)}]_data.cmblock`;
 
 	// document.body.appendChild(thelink);
 	

@@ -311,15 +311,15 @@
     				console.log(thedta);
 
     				if(thedta["transactions"] == undefined){
-    					throw new Error("invalid JSON file");
+    					throw new Error("invalid file");
     				} else {
     					let mdata = JSON.parse(localStorage.getItem(thepref_transactions));
-    					let con = confirm("valid JSON found, do you want to import it?");
+    					let con = confirm("valid datablock found, do you want to import it?");
 
     					console.log(mdata);
 
     					if(con){
-    						con = confirm("Do you want to append or replace\n[OK will append]");
+    						con = confirm("Do you want to append the transactions\n[OK will append (add the new transactions)]\n[CANCEL will replace the existing transactions]");
 
     						if(con){
     							mdata = [...mdata,...thedta.transactions];
@@ -335,13 +335,14 @@
     				}
     			}
     			catch(err){
+    				alert("File processing error, please try again")
     				console.error(err);
     			}
     		};
 
     		reader.readAsText(file);
 
-    		alert('working on it');
+    		// alert('working on it');
     	});
     </script>
 </body>
