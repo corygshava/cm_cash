@@ -1,0 +1,20 @@
+1
+    problem
+        having to sort through your Mpesa messages
+
+    value
+        see all your transactions in one place
+
+    why us
+        we are the only service that enables you to manage your transactions all in one place
+
+2
+    standout features
+        get a qr code to access your transactions
+        download your transactions as a sharable block (with or without encryption, your choice)
+
+3
+    what if you could compile all your transactions and count them in 5 seconds instead of 25
+
+4
+    asdbsjab

@@ -352,15 +352,37 @@
 
 		function showspendsData() {
 			let outs = spends_Holder.querySelectorAll('.daybox');
+			let allspend = 0;
+			let cur_limit = 0;
 
 			outs.forEach((el,id) => {
 				let thenum = el.querySelector('.thenum');
 				let num = weeklyReport.w_expenses[id];
+				let diff = "--",verdict = "",xtra = "",exd = "";
+				let surp = 0;
 
 				if(num > weeklimits[id])
 					thenum.classList.add('out_txt');
 
+				let thadate = new Date(weeklyReport.w_dates[id]);
+				diff = weeklimits[id] - num;
+				allspend += num;
+				cur_limit += weeklimits[id];
+
+				if(thadate < today){
+					verdict = diff > 0 ? "in_txt" : "out_txt";
+					xtra = diff > 0 ? "/= spared" : "/= extra";
+
+					if(thadate.toLocaleDateString() == today.toLocaleDateString()){
+						surp = cur_limit - allspend;
+						xtra = diff > 0 ? "/= remaining" : "/= over budget";
+						exd = `<span style="font-size: 12px;">${surp}/= surplus</span>`;
+					}
+				}
+
 				thenum.innerHTML = `${(num).toLocaleString()}`;
+
+				el.innerHTML += `<br><span class="${verdict}"style="font-size: 12px;">${Math.abs(diff)}${xtra}</span><br>${exd}`;
 			})
 		}
 
