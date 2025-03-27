@@ -23,7 +23,7 @@ body{
 	/* can be modified */
 	--incolor: #11d911;
 	--outcolor:rgb(255, 21, 0);
-	--currency_prefix: "$ ";
+	--currency_prefix: "ksh ";
 
 	--roundness: 15px;
 	--themeshadow: 0 0 12px var(--shadow);

@@ -376,7 +376,7 @@
 					if(thadate.toLocaleDateString() == today.toLocaleDateString()){
 						surp = cur_limit - allspend;
 						xtra = diff > 0 ? "/= remaining" : "/= over budget";
-						exd = `<span style="font-size: 12px;">${surp}/= surplus</span>`;
+						exd = surp > 0 ? `<span style="font-size: 12px;">${surp}/= surplus</span>` : "";
 					}
 				}
 
