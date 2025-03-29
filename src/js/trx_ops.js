@@ -251,6 +251,11 @@ function exportData() {
 	};
 
 	let outdata = JSON.stringify(finalObj);
+
+	let encryptit = confirm("do you want the data to be encrypted?");
+
+	outdata = encryptit ? JSON.stringify({"mydata" : encryptme(outdata,7,"_#cmgash#_",12),"encrypted" :true,"encdata" : [7,encryptme("_#cmgash#_",7)]}) : outdata;
+
 	let thefile = new Blob([outdata],{type: 'application/json'});
 	let url = URL.createObjectURL(thefile);
 	let thelink = document.createElement('a');

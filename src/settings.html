@@ -118,9 +118,9 @@
 			<div class="formguy w3-animate-zoom">
 				<form class="importer" id="the_importform">
 					<a class="w3-btn themebtn w3-right" onclick="toggleShow('#importform','flex','none')"><i class="fa fa-times"></i></a>
-					<h3>JSON importer</h3>
+					<h3>Data importer</h3>
 					<div class="input-group">
-						<input type="file" name="thefile" accept="*.json">
+						<input type="file" name="thefile" accept=".cmblock">
 					</div>
 					<button>import data</button>
 				</form>
@@ -136,6 +136,8 @@
 	<script src="js/toappend.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/trx_ops.js"></script>
+
+	<script src="js/super_encryptor.js"></script>
 
     <script>
         let modebtn = document.querySelector('#mdbtn');
@@ -294,56 +296,91 @@
     </script>
 
     <script>
-    	// for importing data
-    	daform = document.querySelector('#the_importform');
+		// for importing data
+		daform = document.querySelector('#the_importform');
 
-    	daform.addEventListener('submit',(e) => {
-    		e.preventDefault();
+		daform.addEventListener('submit',(e) => {
+			e.preventDefault();
 
-    		let file = daform.thefile.files[0];
-    		if(!file){alert('pick a file first');return;}
+			let file = daform.thefile.files[0];
+			if(!file){alert('pick a file first');return;}
 
-    		let reader = new FileReader();
+			let reader = new FileReader();
 
-    		reader.onload = () => {
-    			try{
-    				let thedta = JSON.parse(reader.result);
-    				console.log(thedta);
+			reader.onload = () => {
+				try{
+					let thedta = JSON.parse(reader.result);
 
-    				if(thedta["transactions"] == undefined){
-    					throw new Error("invalid file");
-    				} else {
-    					let mdata = JSON.parse(localStorage.getItem(thepref_transactions));
-    					let con = confirm("valid datablock found, do you want to import it?");
+					let con = false,promptTxt = "";
+					// console.log(thedta);
 
-    					console.log(mdata);
+					if(thedta["transactions"] == undefined){
+						if(thedta["encdata"] == undefined){
+							throw new Error("invalid file");
+						} else {
+							con = confirm("this datablock is encrypted, continue?");
 
-    					if(con){
-    						con = confirm("Do you want to append the transactions\n[OK will append (add the new transactions)]\n[CANCEL will replace the existing transactions]");
+							if(con){
+								let temp_key = `_#${prompt("enter the decryption key")}#_`;
+								if(encryptme(temp_key,7).toLowerCase() == thedta.encdata[1].toLowerCase()){
+									// console.log("before",thedta.mydata);
+									let toshow = decryptme(thedta.mydata,7,temp_key);
 
-    						if(con){
-    							mdata = [...mdata,...thedta.transactions];
-    						} else {
-    							mdata = thedta.transactions;
-    						}
+									thedta = JSON.parse(toshow);
+									console.log("after",thedta);
 
-    						console.log(mdata);
+									promptTxt = "datablock decrypted successfully, import it?";
+								} else {
+									throw new Error ("incorrect decryption key");
+								}
+							} else {
+								throw new Error ("Operation Aborted!")
+							}
 
-    						localStorage.setItem(thepref_transactions,JSON.stringify(mdata));
-    						window.location.reload();
-    					}
-    				}
-    			}
-    			catch(err){
-    				alert("File processing error, please try again")
-    				console.error(err);
-    			}
-    		};
+						}
+					} else {
+						promptTxt = ("valid datablock found, do you want to import it?");
+					}
 
-    		reader.readAsText(file);
+					con = confirm(promptTxt);
+					let mdata = [];
 
-    		// alert('working on it');
-    	});
+					try {
+						mdata = JSON.parse(localStorage.getItem(thepref_transactions))
+					} catch (error) {
+						alert("error importing Datablock, attempting fix");
+
+						localStorage.setItem(thepref_transactions,"[]");
+						mdata = JSON.parse(localStorage.getItem(thepref_transactions));
+					}
+
+					console.log(mdata);
+
+					if(con){
+						con = confirm("Do you want to append the transactions\n[OK will append (add the new transactions)]\n[CANCEL will replace the existing transactions]");
+
+						if(con){
+							mdata = [...mdata,...thedta.transactions];
+						} else {
+							mdata = thedta.transactions;
+						}
+
+						console.log(mdata);
+
+						localStorage.setItem(thepref_transactions,JSON.stringify(mdata));
+						window.location.reload();
+					}
+				}
+				catch(err){
+					alert(`[->] ${err}`)
+					console.error(err);
+				}
+			};
+
+			reader.readAsText(file);
+
+			// alert('working on it');
+		});
     </script>
 </body>
 </html>
