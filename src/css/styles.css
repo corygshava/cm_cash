@@ -37,12 +37,14 @@
 	nav{
 		display: flex !important;
 		justify-content: center;
+		flex-wrap: wrap;
 		margin: 20px 0;
 		width: 100%;
 	}
 	nav a{
 		display: inline-block;
 		text-align: center;
+		margin: 12px 0;
 	}
 	nav a:hover{
 		scale: 1.1;
