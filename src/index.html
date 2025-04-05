@@ -373,6 +373,9 @@
 					verdict = diff > 0 ? "in_txt" : "out_txt";
 					xtra = diff > 0 ? "/= spared" : "/= extra";
 
+					verdict = diff == 0 ? "" : verdict;
+					xtra = diff == 0 ? " spared" : xtra;
+
 					if(thadate.toLocaleDateString() == today.toLocaleDateString()){
 						surp = cur_limit - allspend;
 						xtra = diff > 0 ? "/= remaining" : "/= over budget";
