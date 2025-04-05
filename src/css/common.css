@@ -19,6 +19,7 @@ body{
 	--bodybg: var(--bgcol);
 	--alttextcolor: var(--bgcol);
 	--textcolor: var(--txcol);
+	--mxwidth: 900px;
 
 	/* can be modified */
 	--incolor: #11d911;

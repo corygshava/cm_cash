@@ -12,4 +12,4 @@
     work on importing financial data
 
 [odeas]
-    
+    use an AI Api to give insights of the data

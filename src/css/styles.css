@@ -63,14 +63,14 @@
 		padding: 12px;
 		border-radius: var(--roundness);
 	}
-	.formguy .input-group{
+	.input-group{
 		margin: 20px 0;
 	}
 	.formguy label{
 		display: block;
 		margin-bottom: 12px;
 	}
-	.formguy input:not([type="radio"],[type="color"]), .formguy textarea {
+	.formguy input:not([type="radio"],[type="color"]), .formguy textarea ,.themenpt{
 		width: 100%;
 		padding: 10px 20px;
 		border-radius: var(--roundness);
@@ -78,7 +78,7 @@
 		background-color: var(--containerbg);
 		color: var(--textcolor);
 	}
-	.formguy input:focus,.formguy textarea:focus{
+	.formguy input:focus,.formguy textarea:focus,.themenpt:focus{
 		scale: 1.02;
 		outline: none;
 		box-shadow: 0 0 12px var(--themecolor);
@@ -189,6 +189,15 @@
 		padding: 12px;
 		border-radius: var(--roundness);
 		width: 96%;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.tableguy .panel{
+		width: 100%;
+		max-width: var(--mxwidth);
 	}
 
 	.tableguy .items {
@@ -200,7 +209,7 @@
 	}
 	.tableguy .items .item{
 		width: 96%;
-		max-width: 900px;
+		max-width: var(--mxwidth);
 		border: 1px solid var(--containerbg);
 		border-radius: var(--roundness);
 		padding: 8px 12px;
@@ -247,4 +256,14 @@
 	}
 	.item .thecash::before{
 		content: var(--pre);
+	}
+
+/* trx list specials */
+	.searchbox{
+		width: 96%;
+		max-width: var(--mxwidth);
+	}
+	.searchbox>.w3-row	{
+		display: flex;
+		align-items: center;
 	}

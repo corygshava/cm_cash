@@ -18,11 +18,9 @@
 			<h1>Add New transaction</h1>
 		</div>
 	</header>
+	
 	<nav>
-		<a href="index.html" class="navlink"><i class="fa fa-dashboard"></i> summary</a>
-		<a href="trx.html" class="navlink"><i class="fa fa-exchange"></i> transactions</a>
-		<a href="new_trx.html" class="navlink active"><i class="fa fa-plus"></i> add</a>
-		<a href="settings.html" class="navlink"><i class="fa fa-cog"></i> settings</a>
+		<a href="" class="navlink w3-transparent">loading links...</a>
 	</nav>
 
 	<div class="content v2">
@@ -71,6 +69,8 @@
 	<script src="js/trx_ops.js"></script>
 
 	<script>
+    	pagename = "add";
+
 		// do some preprocessing on the values
 		document.forms[0].thedate.value = reformatDate(new Date());
 

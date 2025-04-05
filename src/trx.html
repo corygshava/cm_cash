@@ -26,15 +26,43 @@
 	</header>
 
 	<nav>
-		<a href="index.html" class="navlink"><i class="fa fa-dashboard"></i> summary</a>
-		<a href="trx.html" class="navlink active"><i class="fa fa-exchange"></i> transactions</a>
-		<a href="new_trx.html" class="navlink"><i class="fa fa-plus"></i> add</a>
-		<a href="settings.html" class="navlink"><i class="fa fa-cog"></i> settings</a>
+		<a href="" class="navlink w3-transparent">loading links...</a>
 	</nav>
 
     <div class="content v2">
         <div class="tableguy">
-            <div class="items">
+        	<div class="panel searchbox">
+        		<form class="w3-row" action="#">
+        			<div class="w3-col s9">
+        				<div class="w3-row-padding">
+        					<div class="w3-col m6 input-group">
+	        					<input type="text" id="s_npt" class="themenpt" placeholder="search for .....">
+	        				</div>
+	        				<div class="w3-col m6 w3-row-padding">
+		        				<div class="w3-col s6 input-group">
+		        					<select id="filter" class="themenpt">
+		        						<option value="title" selected>title</option>
+		        						<option value="date">date</option>
+		        						<option value="amount_a">amount (above)</option>
+		        						<option value="amount_b">amount (below)</option>
+		        					</select>
+		        				</div>
+		        				<div class="w3-col s6 input-group">
+		        					<select id="type" class="themenpt">
+		        						<option value="all">all</option>
+		        						<option value="income">income</option>
+		        						<option value="expense">expense</option>
+		        					</select>
+		        				</div>
+		        			</div>
+        				</div>
+        			</div>
+        			<div class="w3-col s3">
+        				<button class="themebtn"><i class="fa fa-search"></i> search</button>
+        			</div>
+        		</form>
+        	</div>
+            <div class="panel items">
                 <div class="nada">
                     <i>loading transactions</i>
                 </div>
@@ -78,6 +106,8 @@
 	<script src="js/trx_ops.js"></script>
 
     <script>
+    	pagename = "transactions";
+
         let tguy = document.querySelector('.tableguy>.items');
 
         showtrx(tguy,"all","no transactions yet",true);

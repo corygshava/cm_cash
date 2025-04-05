@@ -5,14 +5,40 @@ var thepref_dailylimit = "cmcash_settings_dailylimit";
 
 var sys_passwird = "shava4life";
 var appname = "GashMan";
+var pagename = "";
 
 var today = new Date();
 
 function setupnav() {
 	// an array of links plus pages they link to plus captions
+	let links = [
+		{link: "index.html",caption: "summary",icon: "dashboard"},
+		{link: "trx.html",caption: "transactions",icon: "exchange"},
+		{link: "new_trx.html",caption: "add",icon: "plus"},
+		{link: "settings.html",caption: "settings",icon: "cog"}
+	]
 	// get nav
-	// add links one by one
-	// append the nav
+
+	let thenav = document.querySelector("nav");
+
+	if(thenav != undefined){
+		// add links one by one
+		// append to the nav
+		thenav.innerHTML = "";
+
+		links.forEach(el => {
+			let xtra = el.caption == pagename ? "active" : "";
+			thenav.innerHTML += `<a href="${el.link}" class="navlink ${xtra}"><i class="fa fa-${el.icon}"></i> ${el.caption}</a>`;
+		})
+
+		thenav.animate([
+			{opacity:0},
+			{opacity:1}
+		],{
+			duration: 300,
+			easing: "ease-out"
+		})
+	}
 }
 
 function getpref(pref,dft) {
@@ -93,4 +119,5 @@ function reformatDate(mydate) {
 // initialisers
 window.onload = () => {
 	loadsettings();
+	setupnav();
 }
